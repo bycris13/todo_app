@@ -26,9 +26,11 @@ class _TaskListScreenState extends State<TaskListScreen> {
           itemCount: tasks.length,
           itemBuilder: (context, index) {
             final task = tasks[index];
-            return Row(
-              children: [
-                Checkbox(
+            return Card(
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+              child: ListTile(
+                leading: Checkbox(
                     activeColor: Colors.green,
                     value: task.completed,
                     onChanged: (bool? value) {
@@ -38,7 +40,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
                         },
                       );
                     }),
-                Text(
+                title: Text(
                   task.title,
                   style: TextStyle(
                       fontSize: 20,
@@ -46,7 +48,9 @@ class _TaskListScreenState extends State<TaskListScreen> {
                           ? TextDecoration.lineThrough
                           : TextDecoration.none),
                 ),
-              ],
+                trailing: IconButton(
+                    onPressed: () {}, icon: const Icon(Icons.delete)),
+              ),
             );
           },
         ));
